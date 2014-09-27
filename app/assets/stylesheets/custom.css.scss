@@ -210,3 +210,21 @@ input {
   }
 }
 
+#pruebas
+.radio-inline{
+
+  span {
+    margin-left: 180px;
+    font-weight: normal;
+  }
+}
+
+.form-date-nacimiento select{
+  width: 100px;
+  display: inline-block;
+}
+
+a.contactar:link {color: #2d35ff;}
+a.contactar:visited {color: navy;}
+a.contactar:hover {background: none;}
+

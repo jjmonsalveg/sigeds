@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140923062214) do
+ActiveRecord::Schema.define(version: 20140927074909) do
+
+  create_table "personals", force: true do |t|
+    t.string   "nombre",           limit: 50
+    t.string   "apellido",         limit: 50
+    t.string   "cedula",           limit: 15
+    t.string   "direccion",        limit: 50
+    t.string   "telefono_casa",    limit: 15
+    t.string   "telefono_celular", limit: 30
+    t.string   "sexo",             limit: 1
+    t.date     "fecha_nacimiento"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "personals", ["cedula"], name: "index_personals_on_cedula", unique: true
 
   create_table "users", force: true do |t|
     t.string   "name"

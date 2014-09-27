@@ -1,0 +1,12 @@
+<% provide(:title, 'Editar Empleado') %>
+<h1>Editar de Empleado</h1>
+
+<%= render 'form' ,nameButton: "Editar Empleado"%>
+<br><br><br>
+
+
+<%= link_to 'Ver Empleado', @personal , class:"btn btn-default btn-lg active",
+            role:"button" %>
+<%= link_to 'Listar Personal', personals_path, class:"btn btn-default btn-lg
+active",
+            role:"button"  %>

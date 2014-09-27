@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@personal) do |f| %>
+
+        <%= render 'shared/error_messages', object: f.object %>
+
+
+          <%= f.label :nombre %><br>
+          <%= f.text_field :nombre ,class: 'form-control' %>
+
+
+        <div class="field">
+          <%= f.label :apellido %><br>
+          <%= f.text_field :apellido ,  class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :cedula %><br>
+          <%= f.text_field :cedula, class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :direccion %><br>
+          <%= f.text_field :direccion,  class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :telefono_casa %><br>
+          <%= f.text_field :telefono_casa ,  class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :telefono_celular %><br>
+          <%= f.text_field :telefono_celular , class: 'form-control' %>
+        </div>
+
+        <div class = "form-date-nacimiento">
+          <%= f.label :fecha_nacimiento %><br>
+          <%= f.date_select :fecha_nacimiento, order: [:day, :month, :year],
+                            prompt: { day: 'día',
+                                      month: 'mes', year: 'año' },
+                            start_year: 1960, end_year: 1.year.ago.year ,
+                            class: 'form-control' %>
+        </div>
+
+        <div class="field" >
+          <%= f.label :sexo %> <br>
+
+          <%= f.label :sexo_f, class: "radio-inline" do %>
+              <%= f.radio_button :sexo , "F" ,:checked => true%>
+              <span>Femenino</span>
+          <%end %>
+          <br>
+          <%= f.label :sexo_m, class: "radio-inline" do %>
+              <%= f.radio_button :sexo , "M"%>
+              <span>Masculino</span>
+          <%end %>
+        </div>
+
+        <br>
+        <div class="actions">
+          <%= f.submit "#{nameButton}", class: "btn btn-primary"%>
+        </div>
+    <% end %>
+  </div>
+</div>
