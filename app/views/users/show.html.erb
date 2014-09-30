@@ -11,7 +11,7 @@
       <br>
       <br>
       <br>
-      <% if @user.gerente_ds? %>
+      <% if current_user.gerente_ds? %>
           <%= link_to 'Editar Usuario', edit_user_path(@user),
                       class:"btn btn-default btn-lg active",
                       role:"button"  %>
