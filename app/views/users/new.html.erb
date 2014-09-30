@@ -1,7 +1,33 @@
 <% provide(:title, 'Crear Usuario') %>
 <h1>Crear Usuario</h1>
 
-<%= render 'users/form' %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <%= f.label :email %>
+        <%= f.text_field :email, class: 'form-control' %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+
+        <%= f.label :password_confirmation, "Confirmación de Password" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+        <%  lista =  Hash.new %>
+        <%  User.rols.each  do |key,value| %>
+            <%   lista[key] = key %>
+        <%end %>
+
+        <%= f.select :rol,lista %>
+        <%= render 'users/personal_asociado', personals: @personals %>
+
+        <%= f.submit "Guardar", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
 
 <%= link_to 'Listar Usuarios', users_path, class:"btn btn-default btn-lg
 active", role:"button"  %>

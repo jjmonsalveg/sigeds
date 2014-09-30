@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930034542) do
+ActiveRecord::Schema.define(version: 20140930073433) do
 
   create_table "personals", force: true do |t|
     t.string   "nombre",           limit: 50
@@ -35,8 +35,10 @@ ActiveRecord::Schema.define(version: 20140930034542) do
     t.string   "password_digest"
     t.string   "remember_digest"
     t.integer  "rol",             default: 0
+    t.integer  "personal_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["personal_id"], name: "index_users_on_personal_id", unique: true
 
 end

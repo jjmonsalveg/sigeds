@@ -1,13 +1,28 @@
+# encoding: UTF-8
 class User < ActiveRecord::Base
   attr_accessor :remember_token
+  #asociations
+  belongs_to :personal , dependent: :destroy
+  accepts_nested_attributes_for :personal
+  #rols
   enum rol: [:basico, :gerente_ds, :asistente_administracion]
-  before_save  { self.email = email.downcase }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :email , presence: true, format: {with: VALID_EMAIL_REGEX},
-            uniqueness: {case_sensitive: false}
 
+  before_save  { self.email = email.downcase }
+
+  #REGEX
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
+
+  #encrypt
   has_secure_password
-  validates :password, length: { minimum: 6 },allow_blank: true
+
+  #validates
+  validates :email , presence: true, format: {with: VALID_EMAIL_REGEX},
+            uniqueness: {case_sensitive: false,message:'email corresponde a un
+usuario'}
+  validates :personal_id , uniqueness: {message: 'Este empleado ya tiene
+usuario'},:allow_blank => true
+  validates :password, length: { minimum: 6, message:'debe ser mayor de 6
+caracteres' },allow_blank: true
 
   # Returns the hash digest of the given string.
   def User.digest(string)

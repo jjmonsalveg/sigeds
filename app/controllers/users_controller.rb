@@ -12,10 +12,12 @@ class UsersController < ApplicationController
 
   def show
    # @user = User.find(params[:id])
+    @personal= @user.personal
   end
 
   def new
     @user= User.new
+    @personals = Personal.all
   end
 
   def create
@@ -25,6 +27,7 @@ class UsersController < ApplicationController
       flash[:success] = "Usuario Creado!"
       redirect_to users_path
     else
+      @personals = Personal.all
       render 'new'
     end
   end
@@ -54,7 +57,7 @@ class UsersController < ApplicationController
   def user_params
     if current_user.gerente_ds?
       params.require(:user).permit(:email, :password,
-                                   :password_confirmation,:rol)
+                                   :password_confirmation,:rol,:personal_id)
     end
   end
 
