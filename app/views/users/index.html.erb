@@ -1,10 +1,33 @@
-<% provide(:title, 'All users') %>
-<h1>All users</h1>
+<%= render 'shared/encabezado_personalizado', title: 'Gestión de Usuarios' %>
 
-<%= will_paginate %>
 
-<ul class="users">
-  <%= render @users %>
-</ul>
+<%= link_to 'Nuevo Usuario', new_user_path ,
+            class: "btn btn-primary btn-sm" %>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <thead>
+      <tr style="background: lightgrey">
+        <th>Email</th>
+        <th>Rol</th>
 
-<%= will_paginate %>
+        <!--<th>Apellido</th>-->
+        <!--<th>Cedula</th>-->
+        <!--<th>Dirección</th>-->
+        <!--<th>Telefono Casa</th>-->
+        <!--<th>Telefono celular</th>-->
+        <!--<th>Sexo</th>-->
+        <!--<th>Fecha Nacimiento</th>-->
+        <th colspan="3" style="text-align: center; border:groove">Operaciones</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <%= render @users %>
+      </tbody>
+    </table>
+
+    <br>
+  </div>
+</div>
+

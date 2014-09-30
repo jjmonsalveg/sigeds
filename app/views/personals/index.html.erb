@@ -34,7 +34,8 @@
             <td><%= link_to 'Editar', edit_personal_path(personal),type:"button",
                             class:"btn btn-link  btn-sm" %></td>
             <td><%= link_to 'Eliminar', personal, method: :delete,
-                            data: { confirm: 'Are you sure?' },type:"button",
+                            data: { confirm: '¿Seguro que desea eliminar Empleado?' },
+                            type:"button",
                             class:"btn btn-link  btn-sm" %></td>
           </tr>
       <% end %>

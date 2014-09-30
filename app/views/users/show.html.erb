@@ -1,11 +1,26 @@
-<% provide(:title, @user.name) %>
+<% provide(:title, @user.email) %>
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-6 col-md-offset-3">
     <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
+      <!--si no tiene personal asociado asi-->
+      <%= gravatar_for @user %>
+      <p style="display: block">
+        <strong>Email: </strong><%= @user.email %><br>
+        <strong>Rol: </strong>  <%= get_rol(@user)%>
+      </p>
+      <br>
+      <br>
+      <br>
+      <% if @user.gerente_ds? %>
+          <%= link_to 'Editar Usuario', edit_user_path(@user),
+                      class:"btn btn-default btn-lg active",
+                      role:"button"  %>
+          <%= link_to 'Listar Personal', users_path, class:"btn btn-default
+                btn-lg active",
+                      role:"button"  %>
+      <%end %>
+      <!--sino render personal buscarlo con query y luego añadir rol y email-->
+
     </section>
   </aside>
 </div>

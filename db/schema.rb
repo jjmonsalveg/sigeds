@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927074909) do
+ActiveRecord::Schema.define(version: 20140930034542) do
 
   create_table "personals", force: true do |t|
     t.string   "nombre",           limit: 50
@@ -29,13 +29,12 @@ ActiveRecord::Schema.define(version: 20140927074909) do
   add_index "personals", ["cedula"], name: "index_personals_on_cedula", unique: true
 
   create_table "users", force: true do |t|
-    t.string   "name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_digest"
-    t.boolean  "admin",           default: false
+    t.integer  "rol",             default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,9 +1,14 @@
-<li>
-  <%= gravatar_for user, size: 50 %>
-  <%= link_to user.name, user %>
-  <% if current_user.admin? && !current_user?(user) %>
-      | <%= link_to "delete", user, method: :delete,
-                    data: { confirm: "You sure?" } %>
-  <% end %>
+<tr>
+  <td><%= user.email %></td>
+  <td><%= get_rol(user) %></td>
+  <td><%= link_to 'Ver ', user,type:"button",
+                  class:"btn btn-link  btn-sm" %></td>
+  <td><%= link_to 'Editar', edit_user_path(user),type:"button",
+                  class:"btn btn-link  btn-sm" %></td>
+  <td><%= link_to 'Eliminar', user, method: :delete,
+                  data: { confirm: '¿Seguro que desea eliminar Usuario?' },
+                  type:"button",
+                  class:"btn btn-link  btn-sm" %></td>
+</tr>
 
-</li>
+
