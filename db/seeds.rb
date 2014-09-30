@@ -27,7 +27,7 @@ User.create!(email: "asistenteadministracion@railstutorial.org",
 end
 
 5.times do |n|
-  name      = Faker::Name.name
+  name      = "juan"<<" "<<"a"*n
   apellido  = Faker::Name.last_name
   cedula    = "18.797.88"<<n.to_s
   direccion = Faker::Address.street_name
