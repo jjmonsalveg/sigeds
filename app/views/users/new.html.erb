@@ -19,7 +19,7 @@
         <%  User.rols.each  do |key,value| %>
             <%   lista[key] = key %>
         <%end %>
-
+        <%= f.label :rol %>
         <%= f.select :rol,lista %>
         <%= render 'users/personal_asociado', personals: @personals %>
 

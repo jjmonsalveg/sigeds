@@ -1,39 +1,20 @@
-<p>
-  <strong>Nombre:</strong>
-  <%= personal.nombre %>
-</p>
-
-<p>
-  <strong>Apellido:</strong>
-  <%= personal.apellido %>
-</p>
-
-<p>
-  <strong>Cedula:</strong>
-  <%= format_cedula(personal.cedula) %>
-</p>
-
-<p>
-  <strong>Direccion:</strong>
-  <%= personal.direccion %>
-</p>
-
-<p>
-  <strong>Telefono casa:</strong>
-  <%= personal.telefono_casa %>
-</p>
-
-<p>
-  <strong>Telefono celular:</strong>
-  <%= personal.telefono_celular %>
-</p>
-
-<p>
-  <strong>Sexo:</strong>
-  <%= personal.sexo %>
-</p>
-
-<p>
-  <strong>Fecha nacimiento:</strong>
-  <%= personal.fecha_nacimiento.strftime("%m/%d/%Y") %>
-</p>
+<tr>
+<td><%= personal.nombre %></td>
+<td><%= personal.apellido %></td>
+<td><%= format_cedula(personal.cedula) %></td>
+<td><%= personal.direccion %></td>
+<td><%= personal.telefono_casa %></td>
+<td><%= personal.telefono_celular %></td>
+<td><%= personal.sexo %></td>
+<td><%= personal.fecha_nacimiento.strftime("%m/%d/%Y") %></td>
+<% if links %>
+    <td><%= link_to 'Ver ', personal,type:"button",
+                    class:"btn btn-link  btn-sm" %></td>
+    <td><%= link_to 'Editar', edit_personal_path(personal),type:"button",
+                    class:"btn btn-link  btn-sm" %></td>
+    <td><%= link_to 'Eliminar', personal, method: :delete,
+                    data: { confirm: '¿Seguro que desea eliminar Empleado?' },
+                    type:"button",
+                    class:"btn btn-link  btn-sm" %></td>
+<% end %>
+</tr>

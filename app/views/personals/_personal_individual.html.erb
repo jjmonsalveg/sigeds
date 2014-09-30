@@ -1,0 +1,39 @@
+<p>
+  <strong>Nombre:</strong>
+  <%= personal.nombre %>
+</p>
+
+<p>
+  <strong>Apellido:</strong>
+  <%= personal.apellido %>
+</p>
+
+<p>
+  <strong>Cedula:</strong>
+  <%= format_cedula(personal.cedula) %>
+</p>
+
+<p>
+  <strong>Direccion:</strong>
+  <%= personal.direccion %>
+</p>
+
+<p>
+  <strong>Telefono casa:</strong>
+  <%= personal.telefono_casa %>
+</p>
+
+<p>
+  <strong>Telefono celular:</strong>
+  <%= personal.telefono_celular %>
+</p>
+
+<p>
+  <strong>Sexo:</strong>
+  <%= personal.sexo %>
+</p>
+
+<p>
+  <strong>Fecha nacimiento:</strong>
+  <%= personal.fecha_nacimiento.strftime("%m/%d/%Y") %>
+</p>

@@ -1,9 +1,16 @@
 <tr>
+  <% personal = Personal.find_by(id: user.personal_id) %>
+  <% if(personal != nil) %>
+      <td><%=  personal.nombre%></td>
+      <td><%=  personal.apellido %></td>
+      <td><%=  personal.cedula %></td>
+  <% else %>
+      <td colspan="3"></td>
+  <% end %>
+
   <td><%= user.email %></td>
   <td><%= get_rol(user) %></td>
-  <% personal = Personal.find_by(id: user.id) %>
-  <td>
-  <%=  render personal if(personal != nil) %></td>
+
   <td><%= link_to 'Ver ', user,type:"button",
                   class:"btn btn-link  btn-sm" %></td>
   <td><%= link_to 'Editar', edit_user_path(user),type:"button",
@@ -13,5 +20,3 @@
                   type:"button",
                   class:"btn btn-link  btn-sm" %></td>
 </tr>
-
-

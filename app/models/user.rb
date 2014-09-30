@@ -2,7 +2,7 @@
 class User < ActiveRecord::Base
   attr_accessor :remember_token
   #asociations
-  belongs_to :personal , dependent: :destroy
+  belongs_to :personal
   accepts_nested_attributes_for :personal
   #rols
   enum rol: [:basico, :gerente_ds, :asistente_administracion]

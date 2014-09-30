@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class Personal < ActiveRecord::Base
   #asociations
-  has_one :user
+  has_one :user , dependent: :destroy
 
   #REGEX
   SOLO_CARACTERES_REGEX = /\A([a-z ñáéíóú]{2,})\z/i

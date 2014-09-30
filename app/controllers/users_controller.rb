@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :no_delete_admin  , only: :destroy
   before_action :gerente_ds_user  , only: [:new, :create, :edit, :update,
                                            :index,:destroy]
-  before_action :correct_user     , only: :show unless
+  before_action :correct_user     , only: :show
   def index
     @users = User.all       #paginate(page: params[:page]) #, per_page  => 30
   end
@@ -97,7 +97,7 @@ class UsersController < ApplicationController
   # confirms that the user is authorized
   def gerente_ds_user
     unless current_user.gerente_ds?
-      flash[:danger] = "No posee permisos para realizar esta acción"
+      flash[:danger] = "No posee permisos para Eliminar Usuarios"
       redirect_to current_user
     end
   end
