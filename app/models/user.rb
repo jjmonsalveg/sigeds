@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessor :remember_token
-  enum rol: [:basico, :gerente_ds]
+  enum rol: [:basico, :gerente_ds, :asistente_administracion]
   before_save  { self.email = email.downcase }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email , presence: true, format: {with: VALID_EMAIL_REGEX},

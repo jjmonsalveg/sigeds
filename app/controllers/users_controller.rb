@@ -5,13 +5,13 @@ class UsersController < ApplicationController
   before_action :no_delete_admin  , only: :destroy
   before_action :gerente_ds_user  , only: [:new, :create, :edit, :update,
                                            :index,:destroy]
-
+  before_action :correct_user     , only: :show unless
   def index
     @users = User.all       #paginate(page: params[:page]) #, per_page  => 30
   end
 
   def show
-    @user = User.find(params[:id])
+   # @user = User.find(params[:id])
   end
 
   def new
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
   # Confirms the correct user.
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user)
+    redirect_to(root_url) unless current_user?(@user) or current_user.gerente_ds?
   end
 
   #no permite a un admin borrarse a si mismo

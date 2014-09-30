@@ -11,6 +11,8 @@ module UsersHelper
       "Gerente Ds"
     elsif user.basico?
       "Básico"
+    elsif user.asistente_administracion?
+      "Asistente de Administracion"
     end
 
   end

@@ -1,5 +1,7 @@
+# encoding: UTF-8
 class PersonalsController < ApplicationController
   before_action :set_personal, only: [:show, :edit, :update, :destroy]
+  before_action :asistente_administracion_user
 
   # GET /personals
   # GET /personals.json
@@ -60,8 +62,9 @@ class PersonalsController < ApplicationController
   # DELETE /personals/1.json
   def destroy
     @personal.destroy
+    flash[:success] = "Usuario Eliminado"
     respond_to do |format|
-      format.html { redirect_to personals_url, notice: 'Personal was successfully destroyed.' }
+      format.html { redirect_to personals_url }
       format.json { head :no_content }
     end
   end
@@ -74,6 +77,15 @@ class PersonalsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def personal_params
-    params.require(:personal).permit(:nombre, :apellido, :cedula, :direccion, :telefono_casa, :telefono_celular, :sexo, :fecha_nacimiento)
+    if current_user.asistente_administracion?
+      params.require(:personal).permit(:nombre, :apellido, :cedula, :direccion, :telefono_casa, :telefono_celular, :sexo, :fecha_nacimiento)
+    end
+  end
+
+  def asistente_administracion_user
+    unless current_user.asistente_administracion?
+      flash[:danger] = "No posee permisos para realizar esta acción"
+      redirect_to current_user
+    end
   end
 end
