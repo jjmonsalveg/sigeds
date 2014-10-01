@@ -3,6 +3,7 @@ class PersonalsController < ApplicationController
   before_action :set_personal, only: [:show, :edit, :update, :destroy]
   before_action :asistente_administracion_user
   before_action :no_delete_asistente  , only: :destroy
+  before_action :no_delete_user       , only: :destroy
 
   # GET /personals
   # GET /personals.json
@@ -99,4 +100,13 @@ class PersonalsController < ApplicationController
       end
     end
   end
+
+  def no_delete_user
+    @user = User.find_by(personal_id: params[:id])
+    unless @user.nil?
+      flash[:danger] = "No puede borrar Empleado debe hacerlo el Gerente Ds"
+      redirect_to users_path
+    end
+  end
+
 end
