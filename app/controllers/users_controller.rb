@@ -11,13 +11,13 @@ class UsersController < ApplicationController
   end
 
   def show
-   # @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     @personal= @user.personal
   end
 
   def new
     @user= User.new
-    @personals = Personal.all
+    return_personals_without_user
   end
 
   def create
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       flash[:success] = "Usuario Creado!"
       redirect_to users_path
     else
-      @personals = Personal.all
+      return_personals_without_user
       render 'new'
     end
   end
@@ -100,6 +100,10 @@ class UsersController < ApplicationController
       flash[:danger] = "No posee permisos para Eliminar Usuarios"
       redirect_to current_user
     end
+  end
+
+  def return_personals_without_user()
+    @personals = Personal.joins("LEFT JOIN users ON personals.id = users.personal_id where users.id IS NULL")
   end
 
 end

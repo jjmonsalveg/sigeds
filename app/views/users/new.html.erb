@@ -1,3 +1,4 @@
+# encoding: UTF-8
 <% provide(:title, 'Crear Usuario') %>
 <h1>Crear Usuario</h1>
 
@@ -19,9 +20,25 @@
         <%  User.rols.each  do |key,value| %>
             <%   lista[key] = key %>
         <%end %>
+
         <%= f.label :rol %>
         <%= f.select :rol,lista %>
+
+
+        <br>
+        <br>
+
         <%= render 'users/personal_asociado', personals: @personals %>
+
+        <%= label_tag 'user_personal_id_', class:'radio-inline' do%>
+            <%= radio_button_tag 'user[personal_id]',"" ,true,align:'right' %>
+            <span style="text-align: left" class="span-asociado" >
+              <strong>No Asociar a Algún Empleado</strong>
+            </span>
+        <% end %>
+
+        <br>
+        <br>
 
         <%= f.submit "Guardar", class: "btn btn-primary" %>
     <% end %>
@@ -31,3 +48,8 @@
 
 <%= link_to 'Listar Usuarios', users_path, class:"btn btn-default btn-lg
 active", role:"button"  %>
+
+
+<script type="text/javascript">
+  $("#user_personal_id_<%=@user.personal_id%>").attr("checked",true)
+</script>
