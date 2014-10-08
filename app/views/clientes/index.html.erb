@@ -1,0 +1,44 @@
+<%= provide(:title,'Gestión Clientes') %>
+<%= render 'shared/encabezado_personalizado', title: 'Gestión de Clientes' %>
+<%= link_to 'Nuevo Cliente', new_cliente_path ,
+            class: "btn btn-primary btn-sm" %>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <thead>
+      <tr style="background: lightgrey">
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <th>Dirección Físcal</th>
+        <th>Fax</th>
+        <th>Rif</th>
+        <th>Url</th>
+        <th colspan="4" style="text-align: center;
+                border:groove">Operaciones</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @clientes.each do |cliente| %>
+          <tr>
+            <td><%= cliente.nombre %></td>
+            <td><%= cliente.direccion %></td>
+            <td><%= cliente.direccionFiscal %></td>
+            <td><%= cliente.fax %></td>
+            <td><%= cliente.rif %></td>
+            <td><%= cliente.url %></td>
+            <td><%= link_to 'Ver', cliente %></td>
+            <td><%= link_to 'Editar', edit_cliente_path(cliente) %></td>
+            <td><%= link_to 'Eliminar', cliente, method: :delete,
+                            data: { confirm: '¿Seguro de borrar Cliente?' }
+            %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <br>
+  </div>
+</div>
+

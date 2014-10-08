@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@cliente) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <div class="field">
+          <%= f.label :nombre %><br>
+          <%= f.text_field :nombre ,class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :direccion , 'Dirección'%><br>
+          <%= f.text_field :direccion ,class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :direccionFiscal,'Dirección Fiscal' %><br>
+          <%= f.text_field :direccionFiscal ,class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :fax %><br>
+          <%= f.text_field :fax ,class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :rif %><br>
+          <%= f.text_field :rif  ,class: 'form-control'%>
+        </div>
+
+        <div class="field">
+          <%= f.label :url %><br>
+          <%= f.text_field :url  ,class: 'form-control'%>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "#{nameButton}", class: "btn btn-primary"%>
+        </div>
+
+    <% end %>
+  </div>
+</div>
