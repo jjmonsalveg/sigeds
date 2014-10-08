@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930073433) do
+ActiveRecord::Schema.define(version: 20141008140150) do
+
+  create_table "clientes", force: true do |t|
+    t.string   "direccion"
+    t.string   "direccionFiscal"
+    t.string   "fax"
+    t.string   "nombre"
+    t.string   "rif"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "personals", force: true do |t|
     t.string   "nombre",           limit: 50

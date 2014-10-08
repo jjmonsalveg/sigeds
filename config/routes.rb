@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :clientes
+
   resources :personals
 
   #remplzada get 'static_pages/home'
