@@ -2,8 +2,17 @@ Rails.application.routes.draw do
 
   resources :clientes
 
-  resources :personals
+  # resources :contactos
+  resources :clientes do
+    resources :contactos , shallow: true
+  end
 
+  resources :personals
+  # ASI SE HACE
+  # resources :posts do
+  #   resources :comments, only: [:index, :new, :create]
+  # end
+  # resources :comments, only: [:show, :edit, :update, :destroy]
   #remplzada get 'static_pages/home'
   root 'static_pages#home'
   get  'help'     =>  'static_pages#help'

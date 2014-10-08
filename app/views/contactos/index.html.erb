@@ -1,0 +1,46 @@
+<%= provide(:title,'Gestión de Contactos de Clientes') %>
+<%= render 'shared/encabezado_personalizado', title: 'Gestión de Contactos de
+ Clientes' %>
+
+<h4 align="center">
+  <strong>Cliente:</strong>
+  <span class="nombre-cliente-contactos"><%= @cliente.nombre%></span>
+</h4>
+
+<%= link_to 'Nuevo Contacto', new_cliente_contacto_path(@cliente) ,
+            class: "btn btn-primary btn-sm" %>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <thead>
+      <tr style="background: lightgrey">
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Teléfono Celular</th>
+        <th>Teléfono Oficina</th>
+        <th colspan="3" style="text-align: center;border:groove">Operaciones</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @contactos.each do |contacto| %>
+          <tr>
+            <td><%= contacto.nombre %></td>
+            <td><%= contacto.email %></td>
+            <td><%= contacto.telefonoCelular %></td>
+            <td><%= contacto.telefonoOficina %></td>
+            <td><%= link_to 'Ver', contacto %></td>
+            <td><%= link_to 'Editar', edit_contacto_path(contacto) %></td>
+            <td><%= link_to 'Eliminar', contacto, method: :delete,
+                            data: { confirm: '¿Seguro de Eliminar Contacto?' }
+            %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <br>
+  </div>
+</div>
+
+<%= link_to 'Regresar a clientes', clientes_path ,class: "btn btn-primary btn-sm" %>

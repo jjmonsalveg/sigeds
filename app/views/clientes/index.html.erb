@@ -33,6 +33,7 @@
             <td><%= link_to 'Eliminar', cliente, method: :delete,
                             data: { confirm: '¿Seguro de borrar Cliente?' }
             %></td>
+            <td><%= link_to 'Contactos',cliente_contactos_path(cliente) %></td>
           </tr>
       <% end %>
       </tbody>

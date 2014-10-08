@@ -1,0 +1,39 @@
+<% provide(:title, 'Editar Contacto') %>
+<h1>Editar Contacto</h1>
+
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3'>
+    <%= form_for(@contacto) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <div class="field">
+          <%= f.label :nombre %><br>
+          <%= f.text_field :nombre,class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :email %><br>
+          <%= f.text_field :email,class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :telefonoCelular ,'Teléfono Celular'%><br>
+          <%= f.text_field :telefonoCelular,class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :telefonoOficina, 'Teléfono Oficina' %><br>
+          <%= f.text_field :telefonoOficina ,class: 'form-control' %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit 'Actualizar contacto' , class: 'btn btn-primary'%>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to 'Ver', @contacto  , class:'btn btn-default btn-lg active',
+            role:'button' %>
+<%= link_to 'Listar Contactos', cliente_contactos_path(@cliente)  , class:'btn btn-default btn-lg active',
+            role:'button' %>

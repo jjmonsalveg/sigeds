@@ -1,0 +1,15 @@
+<% provide(:title, 'Crear Contacto') %>
+
+<h1>Nuevo contacto</h1>
+
+<fieldset>
+  <legend>
+    <strong>Cliente:</strong> <%= @cliente.nombre %>
+  </legend>
+
+  <%= render 'form', nameButton:'Crear Contacto' %>
+</fieldset>
+
+<%= link_to 'Listar Contactos', cliente_contactos_path(@cliente),
+            class:'btn btn-default btn-lg active',
+            role:'button' %>
