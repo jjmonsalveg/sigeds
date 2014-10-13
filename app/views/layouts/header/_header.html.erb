@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-12">
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "SIGEDS", root_path, id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav pull-right">
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Ayuda", help_path %></li>
+
+            <% if logged_in? %>
+
+                <% if current_user.gerente_ds?  %>
+                    <%= render 'layouts/header/options_gerente_ds' %>
+                <% elsif current_user.asistente_administracion? %>
+                    <%= render 'layouts/header/options_asistente_administacion' %>
+                <%end %>
+
+                <%= render 'layouts/header/profile_bar_menu' %>
+
+            <% else %>
+                <li><%= link_to "Log in", login_path %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+  </div>
+</div>

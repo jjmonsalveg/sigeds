@@ -1,4 +1,7 @@
+# encoding: UTF-8
 class ContactosController < ApplicationController
+  before_action :logged_in_user
+  before_action :authorized
   before_action :set_contacto, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -75,4 +78,16 @@ class ContactosController < ApplicationController
   def contacto_params
     params.require(:contacto).permit(:email, :nombre, :telefonoCelular, :telefonoOficina, :cliente_id)
   end
+
+  def authorized?
+    current_user.asistente_administracion? or current_user.gerente_ds?
+  end
+
+  def authorized
+    unless authorized?
+      flash[:danger] = "No posee permisos para realizar esta acción"
+      redirect_to current_user
+    end
+  end
+
 end

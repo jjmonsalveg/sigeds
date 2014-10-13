@@ -1,8 +1,9 @@
 # encoding: UTF-8
 class PersonalsController < ApplicationController
+  before_action :logged_in_user
   before_action :set_personal, only: [:show, :edit, :update, :destroy]
-  before_action :asistente_administracion_user
-  before_action :no_delete_asistente  , only: :destroy
+  before_action :authorized
+  before_action :no_delete_itself  , only: :destroy
   before_action :no_delete_user       , only: :destroy
 
   # GET /personals
@@ -79,23 +80,23 @@ class PersonalsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def personal_params
-    if current_user.asistente_administracion?
+    if current_user.asistente_administracion? or current_user.gerente_ds?
       params.require(:personal).permit(:nombre, :apellido, :cedula, :direccion, :telefono_casa, :telefono_celular, :sexo, :fecha_nacimiento)
     end
   end
 
-  def asistente_administracion_user
-    unless current_user.asistente_administracion?
+  def authorized
+    unless current_user.asistente_administracion? or current_user.gerente_ds?
       flash[:danger] = "No posee permisos para realizar esta acción"
       redirect_to current_user
     end
   end
 
-  def no_delete_asistente
-    if current_user.asistente_administracion?
+  def no_delete_itself
+    if current_user.asistente_administracion? or current_user.gerente_ds?
       @user = User.find_by(personal_id: params[:id])
       if current_user?(@user)
-        flash[:danger] = "No puede borrar Empleado debe hacerlo el Gerente Ds"
+        flash[:danger] = "No puede borrarse a si mismo"
         redirect_to users_path
       end
     end

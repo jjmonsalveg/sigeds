@@ -1,4 +1,7 @@
+# encoding: UTF-8
 class ClientesController < ApplicationController
+  before_action :logged_in_user
+  before_action :authorized
   before_action :set_cliente, only: [:show, :edit, :update, :destroy]
 
   # GET /clientes
@@ -70,6 +73,8 @@ class ClientesController < ApplicationController
     end
   end
 
+
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_cliente
@@ -78,6 +83,19 @@ class ClientesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def cliente_params
-    params.require(:cliente).permit(:direccion, :direccionFiscal, :fax, :nombre, :rif, :url)
+    params.require(:cliente).permit(:direccion, :direccionFiscal, :fax,:nombre,
+                                    :rif, :url) if authorized?
   end
+
+  def authorized?
+    current_user.asistente_administracion? or current_user.gerente_ds?
+  end
+
+  def authorized
+    unless authorized?
+      flash[:danger] = "No posee permisos para realizar esta acción"
+      redirect_to current_user
+    end
+  end
+
 end
