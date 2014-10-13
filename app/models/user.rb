@@ -1,4 +1,5 @@
 # encoding: UTF-8
+include RegexHelper
 class User < ActiveRecord::Base
   attr_accessor :remember_token
   #asociations
@@ -9,20 +10,21 @@ class User < ActiveRecord::Base
 
   before_save  { self.email = email.downcase }
 
-  #REGEX
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
-
   #encrypt
   has_secure_password
 
   #validates
   validates :email , presence: true, format: {with: VALID_EMAIL_REGEX},
-            uniqueness: {case_sensitive: false,message:'email corresponde a un
-usuario'}
-  validates :personal_id , uniqueness: {message: 'Este empleado ya tiene
-usuario'},:allow_blank => true
-  validates :password, length: { minimum: 6, message:'debe ser mayor de 6
-caracteres' },allow_blank: true
+            uniqueness: {case_sensitive: false,
+            message:'email corresponde a un usuario'}
+
+  validates :personal_id ,
+            uniqueness: {message: 'Este empleado ya tiene usuario'},
+            :allow_blank => true
+
+  validates :password,
+            length: { minimum: 6, message:'debe ser mayor de 5 caracteres' },
+            allow_blank: true
 
   # Returns the hash digest of the given string.
   def User.digest(string)

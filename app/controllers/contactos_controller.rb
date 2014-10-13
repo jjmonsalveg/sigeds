@@ -46,6 +46,7 @@ class ContactosController < ApplicationController
         }
         format.json { render :show, status: :ok, location: @contacto }
       else
+        @cliente = @contacto.cliente_id
         format.html { render :edit }
         format.json { render json: @contacto.errors, status: :unprocessable_entity }
       end

@@ -15,7 +15,6 @@ gem 'faker',          '1.4.2'
 gem 'will_paginate',  '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
 
-
 group :test do
   gem 'minitest-reporters', '1.0.5'
   gem 'mini_backtrace',     '0.1.3'
