@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008161611) do
+ActiveRecord::Schema.define(version: 20141013144317) do
 
   create_table "clientes", force: true do |t|
     t.string   "direccion"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20141008161611) do
     t.datetime "updated_at"
   end
 
+  add_index "clientes", ["rif"], name: "index_clientes_on_rif", unique: true
+
   create_table "contactos", force: true do |t|
     t.string   "email"
     t.string   "nombre"
@@ -35,6 +37,7 @@ ActiveRecord::Schema.define(version: 20141008161611) do
   end
 
   add_index "contactos", ["cliente_id"], name: "index_contactos_on_cliente_id"
+  add_index "contactos", ["email"], name: "index_contactos_on_email"
 
   create_table "personals", force: true do |t|
     t.string   "nombre",           limit: 50

@@ -29,7 +29,8 @@
 
     <p>
       <strong>Url:</strong>
-      <%= @cliente.url %>
+      <%=link_to "#{@cliente.url}", @cliente.url ,target: '_blank',
+                 data: { confirm: "¿Desea visitar este sitio?" }%>
     </p>
 
     <%= link_to 'Editar', edit_cliente_path(@cliente),  class:"btn btn-default

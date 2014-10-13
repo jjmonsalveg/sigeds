@@ -27,7 +27,10 @@
             <td><%= cliente.direccionFiscal %></td>
             <td><%= cliente.fax %></td>
             <td><%= cliente.rif %></td>
-            <td><%= cliente.url %></td>
+            <td>
+              <%=link_to "#{cliente.url}", cliente.url ,target: '_blank',
+                         data: { confirm: "¿Desea visitar este sitio?" }%>
+            </td>
             <td><%= link_to 'Ver', cliente %></td>
             <td><%= link_to 'Editar', edit_cliente_path(cliente) %></td>
             <td><%= link_to 'Eliminar', cliente, method: :delete,

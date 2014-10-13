@@ -37,6 +37,8 @@ class Cliente < ActiveRecord::Base
 
   validate  :valida_dominio
 
+  validates :url  , presence:{message: 'es requerido'}
+
   def valida_dominio
     begin
       uri = URI.parse(url)
