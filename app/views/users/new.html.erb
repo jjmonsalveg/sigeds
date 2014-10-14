@@ -6,39 +6,36 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-
-        <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-control' %>
-
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
-
-        <%= f.label :password_confirmation, "Confirmación de Password" %>
-        <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-        <%  lista =  Hash.new %>
-        <%  User.rols.each  do |key,value| %>
-            <%   lista[key] = key %>
-        <%end %>
-
-        <%= f.label :rol %>
-        <%= f.select :rol,lista %>
-
-
-        <br>
-        <br>
-
         <%= render 'users/personal_asociado', personals: @personals %>
 
-        <%= label_tag 'user_personal_id_', class:'radio-inline' do%>
-            <%= radio_button_tag 'user[personal_id]',"" ,true,align:'right' %>
-            <span style="text-align: left" class="span-asociado" >
-              <strong>No Asociar a Algún Empleado</strong>
-            </span>
-        <% end %>
+        <fieldset>
+          <legend>Ingrese datos de Usuario </legend>
+          <%= f.label :email %>
+          <%= f.email_field :email, class: 'form-control' %>
 
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+
+          <%= f.label :password_confirmation, "Confirmación de Password" %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+          <%  lista =  Hash.new %>
+          <%  User.rols.each  do |key,value| %>
+              <%   lista[rol_to_s(key)] = key %>
+          <%end %>
+
+          <%= f.label :rol %>
+          <%= f.select :rol,lista %>
+        </fieldset>
         <br>
         <br>
+
+        <!--<%= label_tag 'user_personal_id_', class:'radio-inline' do%>-->
+            <!--<%= radio_button_tag 'user[personal_id]',"" ,true,align:'right' %>-->
+            <!--<span style="text-align: left" class="span-asociado" >-->
+            <!--<strong>No Asociar a Algún Empleado</strong>-->
+            <!--</span>-->
+            <!--<% end %>-->
 
         <%= f.submit "Guardar", class: "btn btn-primary" %>
     <% end %>
@@ -51,5 +48,5 @@ active", role:"button"  %>
 
 
 <script type="text/javascript">
-  $("#user_personal_id_<%=@user.personal_id%>").attr("checked",true)
+    $("#user_personal_id_<%=@user.personal_id%>").attr("checked",true)
 </script>

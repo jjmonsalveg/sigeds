@@ -18,6 +18,10 @@ class UsersController < ApplicationController
   def new
     @user= User.new
     return_personals_without_user
+    if @personals.empty?
+      flash[:danger] = "No hay Nuevos Empleados para Asociar Usuarios"
+      redirect_to users_path
+    end
   end
 
   def create

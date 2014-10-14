@@ -1,22 +1,24 @@
+<fieldset>
+  <legend>Seleccione Empleado </legend>
+  <table class="table table-striped">
+    <thead>
+    <tr style="background: lightgrey">
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Cedula</th>
+      <th style="text-align: center; border:groove">Empleado Asociado</th>
+    </tr>
+    </thead>
 
-<table class="table table-striped">
-  <thead>
-  <tr style="background: lightgrey">
-    <th>Nombre</th>
-    <th>Apellido</th>
-    <th>Cedula</th>
-    <th style="text-align: center; border:groove">Empleado Asociado</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% personals.each do |personal| %>
-      <tr>
-        <td><%= personal.nombre %></td>
-        <td><%= personal.apellido %></td>
-        <td><%= format_cedula(personal.cedula) %></td>
-        <td><%= radio_button_tag 'user[personal_id]', personal.id %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+    <tbody>
+    <% personals.each do |personal| %>
+        <tr>
+          <td><%= personal.nombre %></td>
+          <td><%= personal.apellido %></td>
+          <td><%= format_cedula(personal.cedula) %></td>
+          <td><%= radio_button_tag 'user[personal_id]', personal.id %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</fieldset>

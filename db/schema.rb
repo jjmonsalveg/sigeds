@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20141013144317) do
     t.string   "password_digest"
     t.string   "remember_digest"
     t.integer  "rol",             default: 0
-    t.integer  "personal_id"
+    t.integer  "personal_id",                 null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

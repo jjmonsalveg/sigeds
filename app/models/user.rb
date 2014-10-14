@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   belongs_to :personal
   accepts_nested_attributes_for :personal
   #rols
-  enum rol: [:basico, :gerente_ds, :asistente_administracion]
+  enum rol: [:basico, :gerente_ds, :asistente_administracion,:lider,
+             :analista, :designer,:programador,:tester]
 
   before_save  { self.email = email.downcase }
 
@@ -18,9 +19,8 @@ class User < ActiveRecord::Base
             uniqueness: {case_sensitive: false,
             message:'email corresponde a un usuario'}
 
-  validates :personal_id ,
-            uniqueness: {message: 'Este empleado ya tiene usuario'},
-            :allow_blank => true
+  validates :personal_id ,presence:{message: 'debe asociarse a este usuario'},
+            uniqueness: {message: 'Este empleado ya tiene usuario'}
 
   validates :password,
             length: { minimum: 6, message:'debe ser mayor de 5 caracteres' },

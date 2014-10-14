@@ -6,14 +6,21 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.email, class: "gravatar")
   end
 
-  def get_rol (user)
-    if user.gerente_ds?
-      "Gerente Ds"
-    elsif user.basico?
-      "Básico"
-    elsif user.asistente_administracion?
-      "Asistente de Administracion"
+  def rol_to_s (rol)
+    case rol
+      when 'gerente_ds' then 'Gerente Ds'
+      when 'asistente_administracion'then  'Asistente de Administracion'
+      when 'basico' then 'Básico'
+      when 'lider' then 'lider'
+      when 'analista' then 'Analista'
+      when 'designer' then 'Diseñador'
+      when 'programador' then 'Programador'
+      when 'tester' then 'Gestor de pruebas'
+      else 'error en rol'
     end
+  end
 
+  def get_key (hash ,value)
+    hash.key(value)
   end
 end

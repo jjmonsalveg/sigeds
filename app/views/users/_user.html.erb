@@ -9,7 +9,7 @@
   <% end %>
 
   <td><%= user.email %></td>
-  <td><%= get_rol(user) %></td>
+  <td><%= rol_to_s(user.rol)%></td>
 
   <td><%= link_to 'Ver ', user,type:"button",
                   class:"btn btn-link  btn-sm" %></td>

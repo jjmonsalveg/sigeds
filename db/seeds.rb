@@ -5,28 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.create!(email: "gerenteds@railstutorial.org",
-             password:              "foobar",
-             password_confirmation: "foobar",
-             rol: "gerente_ds")
 
-User.create!(email: "asistenteadministracion@railstutorial.org",
-             password:              "foobar",
-             password_confirmation: "foobar",
-             rol: "asistente_administracion")
-
-4.times do |n|
-  # name  = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
-  password = "password"
-  rol = "basico"
-  User.create!(email: email,
-               password:              password,
-               password_confirmation: password,
-               rol: rol)
-end
-
-5.times do |n|
+8.times do |n|
   name      = "juan"<<" "<<"a"*n
   apellido  = Faker::Name.last_name
   cedula    = "18.797.88"<<n.to_s
@@ -46,3 +26,29 @@ end
   fecha_nacimiento:fecha_nacimiento
   )
 end
+
+User.create!(email: "gerenteds@railstutorial.org",
+             password:              "foobar",
+             password_confirmation: "foobar",
+             rol: "gerente_ds",
+             personal_id: 1
+            )
+
+User.create!(email: "asistenteadministracion@railstutorial.org",
+             password:              "foobar",
+             password_confirmation: "foobar",
+             rol: "asistente_administracion",
+             personal_id: 2)
+
+4.times do |n|
+  # name  = Faker::Name.name
+  email = "example-#{n+1}@railstutorial.org"
+  password = "password"
+  rol = "basico"
+  User.create!(email: email,
+               password:              password,
+               password_confirmation: password,
+               rol: rol,
+               personal_id: n+3)
+end
+

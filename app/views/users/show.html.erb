@@ -2,11 +2,10 @@
 <div class="row">
   <aside class="col-md-6 col-md-offset-3">
     <section class="user_info">
-      <!--si no tiene personal asociado asi-->
       <%= gravatar_for @user %>
       <p>
         <strong>Email: </strong><%= @user.email %><br>
-        <strong>Rol: </strong>  <%= get_rol(@user)%>
+        <strong>Rol: </strong>  <%= rol_to_s(@user.rol)%>
       </p>
       <% personal = Personal.find_by(id: @user.personal_id )%>
       <% unless personal.nil? %>
@@ -27,7 +26,6 @@
                 btn-lg active",
                       role:"button"  %>
       <%end %>
-      <!--sino render personal buscarlo con query y luego añadir rol y email-->
 
     </section>
   </aside>
