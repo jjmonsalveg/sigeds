@@ -1,7 +1,7 @@
 # encoding: UTF-8
 include RegexHelper
 class Contacto < ActiveRecord::Base
-  belongs_to :cliente
+  belongs_to :cliente, inverse_of: :contactos
 
   #validates
   validates :nombre , presence: { message: 'es requerido'},

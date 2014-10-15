@@ -2,7 +2,7 @@
 require 'uri'
 include RegexHelper
 class Cliente < ActiveRecord::Base
-  has_many :contactos , dependent: :destroy
+  has_many :contactos , dependent: :destroy,inverse_of: :cliente
 
   #actions
   before_save {
