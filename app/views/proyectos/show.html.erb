@@ -1,0 +1,50 @@
+<%= provide(:title, 'Visualizar Proyecto') %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <fieldset>
+      <legend>Datos del Proyecto</legend>
+      <p>
+        <strong>Nombre:</strong>
+        <%= @proyecto.nombre %>
+      </p>
+
+      <p>
+        <strong>Fecha inicio:</strong>
+        <%= @proyecto.fecha_inicio %>
+      </p>
+
+      <p>
+        <strong>Fecha fin:</strong>
+        <%= @proyecto.fecha_fin %>
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Datos del Cliente Asociado </legend>
+      <p>
+        <strong>Nombre:</strong>
+        <%= link_to "#{@proyecto.cliente.nombre}",
+                    cliente_path(@proyecto.cliente_id) %>
+      </p>
+      <p>
+        <strong>Rif:</strong>
+        <%= @proyecto.cliente.rif %>
+      </p>
+
+      <p>
+        <strong>Url:</strong>
+        <%=link_to "#{@proyecto.cliente.url}", @proyecto.cliente.url ,target: '_blank',
+                   data: { confirm: "¿Desea visitar este sitio?" }%>
+      </p>
+
+    </fieldset>
+
+    <br>
+    <%= link_to 'Editar', edit_proyecto_path(@proyecto) ,
+                class:"btn btn-default btn-lg active", role:"button"  %>
+
+    <%= link_to 'Listar Proyectos', proyectos_path,
+                class:"btn btn-default btn-lg active", role:"button"  %>
+
+  </div>
+</div>

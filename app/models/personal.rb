@@ -16,13 +16,13 @@ class Personal < ActiveRecord::Base
   validates :nombre , presence: { message: 'es requerido'},
             format: {with:SOLO_CARACTERES_REGEX,
             message: 'Sólo caracteres A-Z' },
-            :length => { :in => 2..20,
+            :length => { :in => 2..50,
             message: 'debe contener entre 2 y 50 caracteres'}
 
   validates :apellido , presence: { message: 'es requerido'},
             format: { with:SOLO_CARACTERES_REGEX,
             message: 'Sólo caracteres A-Z' },
-            :length => { :in => 2..20,
+            :length => { :in => 2..50,
                          message: 'debe contener entre 2 y 50 caracteres'}
 
   validates :cedula , presence: { message: ' es requerida'},

@@ -5,7 +5,7 @@ class PersonalsController < ApplicationController
   before_action :authorized
   before_action :no_delete_itself  , only: :destroy
   before_action :no_delete_user       , only: :destroy
-
+  before_action :set_meses   , only: [:edit,:new,:create,:update]
   # GET /personals
   # GET /personals.json
   def index
@@ -70,6 +70,12 @@ class PersonalsController < ApplicationController
       format.html { redirect_to personals_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def set_meses
+    @meses = %w(Enero Febrero Marzo Abril Mayo Junio Julio Agosto
+                Septiembre Octubre  Noviembre Diciembre)
   end
 
   private

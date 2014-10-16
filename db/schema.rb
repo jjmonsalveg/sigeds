@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141013144317) do
+ActiveRecord::Schema.define(version: 20141015150757) do
 
   create_table "clientes", force: true do |t|
-    t.string   "direccion"
-    t.string   "direccionFiscal"
-    t.string   "fax"
-    t.string   "nombre"
-    t.string   "rif"
-    t.string   "url"
+    t.string   "direccion",       limit: 50
+    t.string   "direccionFiscal", limit: 50
+    t.string   "fax",             limit: 15
+    t.string   "nombre",          limit: 50
+    t.string   "rif",             limit: 50
+    t.string   "url",             limit: 50
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 20141013144317) do
   add_index "clientes", ["rif"], name: "index_clientes_on_rif", unique: true
 
   create_table "contactos", force: true do |t|
-    t.string   "email"
-    t.string   "nombre"
-    t.string   "telefonoCelular"
-    t.string   "telefonoOficina"
+    t.string   "email",           limit: 30
+    t.string   "nombre",          limit: 50
+    t.string   "telefonoCelular", limit: 15
+    t.string   "telefonoOficina", limit: 15
     t.integer  "cliente_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -53,6 +53,17 @@ ActiveRecord::Schema.define(version: 20141013144317) do
   end
 
   add_index "personals", ["cedula"], name: "index_personals_on_cedula", unique: true
+
+  create_table "proyectos", force: true do |t|
+    t.date     "fecha_inicio"
+    t.date     "fecha_fin"
+    t.integer  "cliente_id"
+    t.string   "nombre",       limit: 50
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "proyectos", ["cliente_id"], name: "index_proyectos_on_cliente_id"
 
   create_table "users", force: true do |t|
     t.string   "email"

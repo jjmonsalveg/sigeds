@@ -3,6 +3,7 @@ require 'uri'
 include RegexHelper
 class Cliente < ActiveRecord::Base
   has_many :contactos , dependent: :destroy,inverse_of: :cliente
+  has_many :proyectos ,dependent:  :destroy,inverse_of: :cliente
 
   #actions
   before_save {
@@ -12,7 +13,7 @@ class Cliente < ActiveRecord::Base
 
   #validates
   validates :nombre , presence: { message: 'es requerido'},
-            format: {with:NOMBRE_CLIENTE_REGEX,
+            format: {with:NOMBRE_REGEX,
                      message: 'Solo caracteres A-Z, Números, puntos y/o comas' },
             :length => { :in => 2..50,
                          message: 'debe contener entre 2 y 50 caracteres'}

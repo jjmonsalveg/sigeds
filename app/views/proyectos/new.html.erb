@@ -1,0 +1,8 @@
+<% provide(:title, 'Crear Proyecto') %>
+<h1>Nuevo Proyecto</h1>
+
+<%= render 'form' , nameButton:"Crear Proyecto" %>
+
+<%= link_to 'Listar Proyectos', proyectos_path ,
+            class:"btn btn-default btn-lg active",
+            role:"button" %>

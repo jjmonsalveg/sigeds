@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@proyecto) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <div class="field">
+          <%= f.label :nombre %><br>
+          <%= f.text_field :nombre ,class: 'form-control' %>
+        </div>
+        <div class="form-date">
+          <%= f.label :fecha_inicio %><br>
+          <%= f.date_select :fecha_inicio ,order: [:day, :month, :year],
+                            prompt: { day: 'día',
+                                      month: 'mes',year: 'año' } ,
+                            start_year: 1.year.ago.year,
+                            end_year: 50.year.since.year ,
+                            class: 'form-control',
+                            :use_month_names => @meses ,
+                            class: 'form-control'  %>
+        </div>
+        <div class="form-date">
+          <%= f.label :fecha_fin %><br>
+          <%= f.date_select :fecha_fin , order: [:day, :month,
+                                                  :year],
+                            prompt: { day: 'día',
+                                      month: 'mes', year: 'año' },
+                            start_year: Time.now.year,
+                            end_year: 50.year.since.year ,
+                            class: 'form-control',
+                            :use_month_names => @meses,
+                            class: 'form-control'  %>
+        </div>
+
+        <%= render 'proyectos/cliente_asociado', clientes: @clientes %>
+        <div class="actions">
+          <%= f.submit "#{nameButton}", class: "btn btn-primary"%>
+        </div>
+    <% end %>
+  </div>
+</div>
+<br>
+<br>
+
+<script type="text/javascript">
+    $("#proyecto_cliente_id_<%=@proyecto.cliente_id%>").attr("checked",true)
+</script>

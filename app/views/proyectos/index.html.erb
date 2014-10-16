@@ -1,0 +1,44 @@
+<%= provide(:title,'Gestión Proyectos') %>
+<%= render 'shared/encabezado_personalizado', title: 'Gestión de Proyectos' %>
+<%= link_to 'Nuevo Proyecto', new_proyecto_path, class: "btn btn-primary btn-sm" %>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped">
+      <thead>
+      <tr style="background: lightgrey">
+        <th>Nombre</th>
+        <th>Fecha inicio</th>
+        <th>Fecha finalización</th>
+        <th>Cliente</th>
+        <th>Representante de Usuarios</th>
+        <th>Estado</th>
+        <th colspan="5" style="text-align: center;
+                border:groove">Operaciones</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @proyectos.each do |proyecto| %>
+          <tr>
+            <td><%= proyecto.nombre %></td>
+            <td><%= proyecto.fecha_inicio %></td>
+            <td><%= proyecto.fecha_fin %></td>
+            <td>
+              <%= link_to "#{proyecto.cliente.nombre}",
+                          cliente_path(proyecto.cliente) unless
+                          proyecto.cliente.blank?%>
+            </td>
+            <td>#</td>
+            <td>#</td>
+            <td><%= link_to 'ver', proyecto %></td>
+            <td><%= link_to 'Editar', edit_proyecto_path(proyecto) %></td>
+            <td><%= link_to 'Eliminar', proyecto, method: :delete, data: { confirm: '¿Seguro de eliminar Proyecto?' } %></td>
+            <td><%= link_to 'Productos', '#' %></td>
+            <td><%= link_to 'Equipo', '#' %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+

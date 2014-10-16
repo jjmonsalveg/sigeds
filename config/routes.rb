@@ -1,28 +1,30 @@
 Rails.application.routes.draw do
 
+  resources :proyectos
   resources :clientes
 
-  # resources :contactos
   resources :clientes do
     resources :contactos , shallow: true
   end
 
   resources :personals
+
+  root 'static_pages#home'
+  get  'help'     =>  'static_pages#help'
+  get  'contact'  =>  'static_pages#contact'
+  get  'about'    =>  'static_pages#about'
+  get  'login'    => 'sessions#new'
+  delete 'logout'   => 'sessions#destroy'
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :users
+
+  # resources :contactos
   # ASI SE HACE
   # resources :posts do
   #   resources :comments, only: [:index, :new, :create]
   # end
   # resources :comments, only: [:show, :edit, :update, :destroy]
   #remplzada get 'static_pages/home'
-  root 'static_pages#home'
-  get  'help'     =>  'static_pages#help'
-  get  'contact'  =>  'static_pages#contact'
-  get  'about'    =>  'static_pages#about'
-  get  'signup'   =>  'users#new'
-  get    'login'    => 'sessions#new'
-  delete 'logout'   => 'sessions#destroy'
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

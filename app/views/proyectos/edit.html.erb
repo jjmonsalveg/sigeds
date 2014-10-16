@@ -1,0 +1,12 @@
+<% provide(:title, 'Editar Proyecto') %>
+<h1>Editar Proyecto</h1>
+
+<%= render 'form', nameButton:"Actualizar Proyecto" %>
+
+
+<%= link_to 'ver', @proyecto,
+            class:"btn btn-default btn-lg active",
+            role:"button" %>
+<%= link_to 'Listar Proyectos', proyectos_path,
+            class:"btn btn-default btn-lg active",
+            role:"button" %>

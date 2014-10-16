@@ -182,6 +182,10 @@ input {
   .form-control {
     color: $state-danger-text;
   }
+  select{
+    border-color: $state-danger-border;
+    color: $state-danger-text;
+  }
 }
 
 .checkbox {
@@ -223,7 +227,7 @@ input {
   margin-left: -15px;
   font-weight: normal;
 }
-.form-date-nacimiento select{
+.form-date select{
   width: 100px;
   display: inline-block;
 }

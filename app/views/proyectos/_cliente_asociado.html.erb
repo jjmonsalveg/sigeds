@@ -1,0 +1,27 @@
+<fieldset>
+  <legend>Asocie un Cliente Al Proyecto  </legend>
+  <table class="table table-striped">
+    <thead>
+    <tr style="background: lightgrey">
+      <th>Nombre</th>
+      <th>rif</th>
+      <th>url</th>
+      <th style="text-align: center; border:groove">Cliente
+        Asociado</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% clientes.each do |cliente| %>
+        <tr>
+          <td><%= cliente.nombre %></td>
+          <td><%= cliente.rif %></td>
+          <td><%= link_to "#{cliente.url}",cliente.url %></td>
+          <td>
+            <%= radio_button_tag 'proyecto[cliente_id]', cliente.id %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</fieldset>
